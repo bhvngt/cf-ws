@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<script>
+	const websocket = new WebSocket(`ws://${window.location.host}/ws`);
+	websocket.onopen = () => websocket.send("Client is ready");
+	websocket.addEventListener('message', event => {
+		console.log('Message received from server');
+		console.log(event.data);
+		websocket.send("From Client");
+	});
+</script>
+<body>
+<h1>WebSocket CF Demo</h1>
+</body>
+</html>
