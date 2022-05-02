@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <script>
-	const websocket = new WebSocket(`ws://${window.location.host}/ws`);
+	const protocol = (globalThis.location.protocol === 'https:') ? "wss" : "ws"
+	const websocket = new WebSocket(`${protocol}://${globalThis.location.host}/ws`);
 	websocket.onopen = () => websocket.send("Client is ready");
 	websocket.addEventListener('message', event => {
 		console.log('Message received from server');
